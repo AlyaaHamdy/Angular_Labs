@@ -1,0 +1,146 @@
+
+  <div class="container ">
+    <h1 class="text-center py-5">{{StoreName}}</h1>
+    <img class="ms-5" [src]="StoreLogo">
+    <h3>We offer an explicit discount of: {{Discount}}.</h3>
+
+<!-- --------------------------Atable display The product list------- -->
+<table class="table table-striped table-bordered text-center" *ngIf="ShowTable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Image</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let product of ProductList">
+            <td>{{product.id}}</td>
+            <td>{{product.name}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.price}}</td>
+            <td><img [src]="product.img" style="width:50px;"></td>
+        </tr>
+    </tbody>
+</table>
+ <button (click)="ShowUp()">Buy</button>
+
+<div *ngIf="ShowMsg">
+    <h1>Thanks for purchasing from our Store {{ClientName}}</h1>
+</div>
+
+<!-- <h1>{{ClientName}}</h1> -->
+<input type="text"  [(ngModel)]="ClientName" #n> 
+
+
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4 ">
+    <div class="col align-center text-center" *ngFor="let product of ProductList">
+      <div class="card h-100">
+        <img [src]="product.img" class="card-img-top" style="width:350px;">
+        <div class="card-body">
+          <h5 class="card-title">{{product.name}}</h5>
+          <p class="card-text">{{product.quantity}}</p>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-border bg-secondary text-light">Add To Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- --------------------------------------------Day Two----------->
+  <form class="row g-3" [formGroup]="addform" (ngSubmit)="add()" >
+    <div class="col-md-6">
+      <label for="validationCustom01" class="form-label">name</label>
+      <input type="text" class="form-control" formControlName="name">
+        <div  *ngIf="addform.get('name')?.touched && addform.get('name')?.invalid">
+          <span class="text-danger" *ngIf="addform.get('name')?.errors?.['required']">must enter a name</span>
+          <span class="text-danger" *ngIf="addform.get('name')?.errors?.['minlength']">must enter a name with al least 4 character</span>
+        </div>
+      </div>
+    <div class="col-md-6">
+      <label for="validationCustom02" class="form-label">image URL</label>
+      <input type="text" class="form-control"  formControlName="img">
+      <div  *ngIf="addform.get('img')?.touched && addform.get('img')?.invalid">
+        <span class="text-danger" *ngIf="addform.get('img')?.errors?.['required']">must enter an img</span>
+        <span class="text-danger" *ngIf="addform.get('img')?.errors?.['pattern']">must be Url</span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom03" class="form-label">Category</label>
+      <select class="form-select" formControlName="categoryId">
+        <option selected disabled value="">Choose...</option>
+        <option *ngFor="let cat of category"  [value]="cat.id">{{cat.name}}</option>
+      </select>
+      <div  *ngIf="addform.get('categoryId')?.touched && addform.get('categoryId')?.invalid">
+        <span class="text-danger" *ngIf="addform.get('categoryId')?.errors?.['required']">must Choose an item</span>
+       </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom04" class="form-label" >Quantitiy</label>
+      <input type="number" class="form-control" formControlName="quantity">
+      <div  *ngIf="addform.get('quantity')?.touched && addform.get('quantity')?.invalid">
+        <span class="text-danger" *ngIf="addform.get('quantity')?.errors?.['required']">must enter a quantity</span>
+        <span class="text-danger" *ngIf="addform.get('quantity')?.errors?.['min']">must enter a quantity with al least 1</span>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <label for="validationCustom05" class="form-label">Price</label>
+      <input type="text" class="form-control" formControlName="price">
+      <div  *ngIf="addform.get('price')?.touched && addform.get('price')?.invalid">
+        <span class="text-danger" *ngIf="addform.get('price')?.errors?.['required']">must enter a price</span>
+        <span class="text-danger" *ngIf="addform.get('price')?.errors?.['min']">must enter a price with al least 1</span>
+      </div>
+    </div>
+    <div class="col-12 text-center">
+      <button class="btn btn-primary" type="submit" [disabled]="addform.invalid">Submit form</button>
+    </div>
+  </form>
+
+
+
+
+
+
+  <!-- ////////////////////////////////////////Register Form///////////////////////// -->
+  
+  <div id="body">
+  
+    <nav class="navbar navbar-expand-lg bg-dark">
+      <div class="container-fluid d-flex">
+        <a class="navbar-brand text-light" href="#"><b>Products</b></a>
+            <li class="nav-item d-flex justify-content-between">
+              <a class="nav-link text-light me-5" href="#"><b>Register</b></a>
+              <a class="nav-link text-light" href="#"><b>Login</b></a>
+            </li>
+      </div>
+    </nav>
+    
+    <form [formGroup]="addperson" (ngSubmit)="register()" >
+      <div id="body_1">
+        <div>
+        <label for="Name"></label>
+        <input type="text" placeholder="Name*" name="name" formControlName="name" required>
+    
+        <label for="psw"></label>
+        <input type="text" placeholder="Username*" name="userName"formControlName="userName" required>
+    
+        <label for="psw-repeat"></label>
+        <input type="password" placeholder="Password*" name="password"  formControlName="password"required>
+        <label for="psw"></label>
+        <input type="password" placeholder="Number*" name="psw" formControlName="password" required>
+    
+        <label for="psw-repeat"></label>
+        <input type="email" placeholder="Email" name="email" formControlName="email" required>
+    
+        
+          <button type="submit" class="registerbtn">Register</button></div>
+      </div>
+    </form>
+      
+    </div>
+    <!-- <h1>The hero's birthDate is {{ myID | birthDate }} </h1> -->
+  </div>

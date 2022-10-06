@@ -1,0 +1,73 @@
+#body {
+    width:600px;
+    height:530px;
+    background:#16552c;
+    margin-left:700px
+  }
+  
+  h2 {
+    text-align:center;
+    padding:20px;
+    font-family:sans-serif;
+    color:white
+  }
+  
+  #body_1 {
+    width:500px;
+    height:400px;
+    background:#73ba7a;
+    margin-left:50px;
+    
+  }
+  
+  
+  
+  input[type=text], input[type=password] {
+    width: 80%;
+    padding: 9px;
+    display: inline-block;
+    border-width:2px;
+    background: #f1f1f1;
+    margin: 2px 5px 20px ;
+    margin-left:40px;
+    margin-top:10px;
+    border-radius: 10px;
+    
+    
+   
+    
+  }
+  
+  input[type=text]:focus, input[type=password]:focus {
+    background-color: #ddd;
+    outline: none;
+    border-radius: 5px;
+  }
+  
+  
+  
+  
+  .registerbtn {
+    background-color: green;
+    color: white;
+    padding: 8px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 84%;
+    opacity: 0.9;
+    margin-top:0px;
+    margin-left:36px;
+    border-radius: 10px;
+  }
+  
+  .registerbtn:hover {
+    opacity:1;
+  }
+  
+  
+  
+  .signin {
+    background-color: #f1f1f1;
+    text-align: center;
+  }
